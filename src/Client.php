@@ -139,7 +139,10 @@ class Client
             return $this->handleResponse($response);
         } catch (GuzzleException $e) {
             throw new JushuitanException($e->getMessage(), $e->getCode(), $e);
+        }catch (\Exception $e) {
+            throw new JushuitanException($e->getMessage(), $e->getCode(), $e);
         }
+        return [];
     }
     
     /**
@@ -150,7 +153,7 @@ class Client
      */
     private function handleResponse(ResponseInterface $response): array
     {
-        $body = (string) $response->getBody();
+        $body = (string) $response->getBody()->getContents();;
         $data = json_decode($body, true);
         
         if (json_last_error() !== JSON_ERROR_NONE) {
@@ -164,7 +167,7 @@ class Client
             );
         }
         
-        return $data['data'] ?? $data;
+        return $data;
     }
     
     /**

@@ -23,7 +23,7 @@ class JushuitanComponent extends Component
     public $cache = 'cache';
     
     /** @var int */
-    public $tokenCacheDuration = 7200;
+    public $tokenCacheDuration = 86400*30;
     
     /** @var string */
     private $cacheKeyPrefix = 'jushuitan';
@@ -85,11 +85,11 @@ class JushuitanComponent extends Component
         );
         
         // 记录日志
-        \Yii::getLogger()->log(
-            "获取访问令牌成功: {$result['access_token']}",
-            Logger::LEVEL_INFO,
-            'jushuitan'
-        );
+        // \Yii::getLogger()->log(
+        //     "获取访问令牌成功: {$result['access_token']}",
+        //     Logger::LEVEL_INFO,
+        //     'jushuitan'
+        // );
         
         return $result;
     }
@@ -112,13 +112,30 @@ class JushuitanComponent extends Component
         );
         
         // 记录日志
-        \Yii::getLogger()->log(
-            "刷新访问令牌成功: {$result['access_token']}",
-            Logger::LEVEL_INFO,
-            'jushuitan'
-        );
+        // \Yii::getLogger()->log(
+        //     "刷新访问令牌成功: {$result['access_token']}",
+        //     Logger::LEVEL_INFO,
+        //     'jushuitan'
+        // );
         
         return $result;
+    }
+    /**
+     * 设置访问令牌
+     * @param string $accessToken
+     * @return $this
+     */
+    public function setAccessToken(string $accessToken)
+    {
+        $this->getClient()->setAccessToken($accessToken);
+        
+        // 缓存token
+        $this->cache->set(
+            $this->getCacheKey('access_token'),
+            $accessToken,
+            $this->tokenCacheDuration
+        );
+        return $this;
     }
     
     /**
@@ -132,20 +149,20 @@ class JushuitanComponent extends Component
     public function request(string $method, string $uri, array $params = []): array
     {
         // 记录请求日志
-        \Yii::getLogger()->log(
-            "API请求: {$method} {$uri} " . json_encode($params, JSON_UNESCAPED_UNICODE),
-            Logger::LEVEL_INFO,
-            'jushuitan'
-        );
+        // \Yii::getLogger()->log(
+        //     "API请求: {$method} {$uri} " . json_encode($params, JSON_UNESCAPED_UNICODE),
+        //     Logger::LEVEL_INFO,
+        //     'jushuitan'
+        // );
         
         $result = $this->getClient()->request($method, $uri, $params);
         
         // 记录响应日志
-        \Yii::getLogger()->log(
-            "API响应: " . json_encode($result, JSON_UNESCAPED_UNICODE),
-            Logger::LEVEL_INFO,
-            'jushuitan'
-        );
+        // \Yii::getLogger()->log(
+        //     "API响应: " . json_encode($result, JSON_UNESCAPED_UNICODE),
+        //     Logger::LEVEL_INFO,
+        //     'jushuitan'
+        // );
         
         return $result;
     }

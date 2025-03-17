@@ -2,6 +2,11 @@
 
 这是聚水潭开放平台的PHP SDK，提供了简单易用的接口调用方式。
 
+## 更新日志
+
+### v1.3.0
+- 更新guzzlehttp/guzzle依赖版本至^6.5
+
 ## 安装
 
 通过Composer安装:
@@ -61,6 +66,11 @@ $result = $client->request('GET', '/open/shops/query', [
 ```
 
 ## 版本历史
+
+### v1.3.0 (2024-01-10)
+
+- 调整guzzlehttp/guzzle依赖版本至^6.5，提升SDK兼容性
+- 优化依赖包管理
 
 ### v1.0.0 (2024-01-09)
 
