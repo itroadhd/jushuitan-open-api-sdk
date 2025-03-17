@@ -2,10 +2,11 @@
 {
     "name": "jushuitan/open-api-sdk",
     "description": "聚水潭开放平台 PHP SDK",
+    "version": "1.0.0",
     "type": "library",
     "require": {
         "php": ">=7.1",
-        "guzzlehttp/guzzle": "^7.0",
+        "guzzlehttp/guzzle": "^6.5",
         "psr/http-client": "^1.0",
         "psr/http-message": "^1.0",
         "ext-json": "*"

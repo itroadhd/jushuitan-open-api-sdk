@@ -60,6 +60,16 @@ $result = $client->request('GET', '/open/shops/query', [
 ]);
 ```
 
+## 版本历史
+
+### v1.0.0 (2024-01-09)
+
+- 首次发布稳定版本
+- 实现基础的OAuth认证功能
+- 支持API请求和签名生成
+- 提供Yii2框架集成支持
+- 完善的文档和使用示例
+
 ## 许可证
 
 本项目采用MIT许可证，详情请参见[LICENSE](LICENSE)文件。
