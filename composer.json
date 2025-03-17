@@ -1,0 +1,35 @@
+
+{
+    "name": "jushuitan/open-api-sdk",
+    "description": "聚水潭开放平台 PHP SDK",
+    "type": "library",
+    "require": {
+        "php": ">=7.1",
+        "guzzlehttp/guzzle": "^7.0",
+        "psr/http-client": "^1.0",
+        "psr/http-message": "^1.0",
+        "ext-json": "*"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^9.0",
+        "squizlabs/php_codesniffer": "^3.0"
+    },
+    "license": "MIT",
+    "autoload": {
+        "psr-4": {
+            "Jushuitan\\OpenSDK\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Jushuitan\\OpenSDK\\Tests\\": "tests/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Jushuitan Developer",
+            "email": "developer@jushuitan.com"
+        }
+    ],
+    "minimum-stability": "stable"
+}
