@@ -162,7 +162,7 @@ class Client
         
         if (isset($data['code']) && $data['code'] !== 0) {
             throw new JushuitanException(
-                $data['message'] ?? 'Unknown error',
+                $data['msg'] ?? 'Unknown error',
                 $data['code'] ?? 0
             );
         }
